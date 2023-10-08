@@ -15,8 +15,9 @@ function Write() {
   const navigate = useNavigate();
 
   function handlePostNews(e) {
-    if (!titlePost && !contentPost) return;
     e.preventDefault();
+
+    if (!titlePost && !contentPost) return;
 
     const newPost = {
       title: titlePost,
