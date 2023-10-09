@@ -5,7 +5,7 @@ export default {
     extend: {
       backgroundImage: {
         "my-image":
-          "url('https://www.fanabc.com/english/wp-content/uploads/2022/12/321105434_883868013027395_2576485099436938498_n.jpg')",
+          "url('https://i0.wp.com/thesportsgrail.com/wp-content/uploads/2023/07/Chances.png?fit=1568%2C882&ssl=1')",
       },
     },
   },
