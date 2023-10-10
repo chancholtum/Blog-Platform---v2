@@ -6,6 +6,8 @@ import { addComment } from "../Slice/postSlice";
 function Comments({ comment, postId }) {
   const [visitorMent, setVisitorMent] = useState("");
   const username = useSelector((state) => state.user.username);
+  const imageProfile = useSelector((state) => state.user.imageProfile);
+
   const dispatch = useDispatch();
 
   function handleSubmit(e) {
@@ -13,8 +15,7 @@ function Comments({ comment, postId }) {
     if (!visitorMent) return;
 
     const newComment = {
-      photo:
-        "https://scontent.fbkk13-2.fna.fbcdn.net/v/t39.30808-6/240521527_4374177845958670_230611608875898404_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=49d041&_nc_ohc=QZ9MgyQMdMEAX864Sho&_nc_ht=scontent.fbkk13-2.fna&oh=00_AfCEz2w5hIaZxFl6XIjC0Voerp2ueaq_MJUNSRvFZw0d6g&oe=652399A1",
+      photo: imageProfile,
       commentName: username,
       commentText: visitorMent,
       commentId: crypto.randomUUID(),
@@ -35,7 +36,7 @@ function Comments({ comment, postId }) {
       <div className="mt-5 flex w-full gap-1">
         <img
           className="h-10 w-10 rounded-full object-cover"
-          src="https://scontent.fbkk13-2.fna.fbcdn.net/v/t39.30808-6/240521527_4374177845958670_230611608875898404_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=49d041&_nc_ohc=QZ9MgyQMdMEAX864Sho&_nc_ht=scontent.fbkk13-2.fna&oh=00_AfCEz2w5hIaZxFl6XIjC0Voerp2ueaq_MJUNSRvFZw0d6g&oe=652399A1"
+          src={imageProfile}
           alt="manchester united boy"
         />
 

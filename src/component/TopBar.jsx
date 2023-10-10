@@ -4,6 +4,7 @@ import { updateName } from "../Slice/userSlice";
 
 function TopBar() {
   const username = useSelector((state) => state.user.username);
+  const imageProfile = useSelector((state) => state.user.imageProfile);
 
   const dispatch = useDispatch();
 
@@ -95,9 +96,9 @@ function TopBar() {
             <span className="text-white md:text-sm">{username}</span>
             <img
               className="h-10 w-10 rounded-full object-cover"
-              src="https://scontent.fbkk13-2.fna.fbcdn.net/v/t39.30808-6/240521527_4374177845958670_230611608875898404_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=49d041&_nc_ohc=QZ9MgyQMdMEAX864Sho&_nc_ht=scontent.fbkk13-2.fna&oh=00_AfCEz2w5hIaZxFl6XIjC0Voerp2ueaq_MJUNSRvFZw0d6g&oe=652399A1"
+              src={imageProfile}
               alt="manchester united boy"
-            />{" "}
+            />
           </div>
         ) : (
           <ul className="flex gap-5 text-lg text-white">

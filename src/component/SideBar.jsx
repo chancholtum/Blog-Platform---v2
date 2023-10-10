@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 
 function SideBar() {
   const username = useSelector((state) => state.user.username);
+  const imageProfile = useSelector((state) => state.user.imageProfile);
+
   return (
     <>
       {username && (
@@ -13,8 +15,7 @@ function SideBar() {
                 About me
               </span>
               <img
-                src="https://scontent.fbkk13-2.fna.fbcdn.net/v/t39.30808-6/240521527_4374177845958670_230611608875898404_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=49d041&_nc_ohc=QZ9MgyQMdMEAX864Sho&_nc_ht=scontent.fbkk13-2.fna&oh=00_AfCEz2w5hIaZxFl6XIjC0Voerp2ueaq_MJUNSRvFZw0d6g&oe=652399A1"
-                alt="manchester united boy"
+                src={imageProfile}
                 className=" mt-2 w-1/2 rounded-xl sm:mt-4 sm:h-[250px] sm:w-[250px]"
               />
               <h1 className="text-3xl">{username}</h1>
