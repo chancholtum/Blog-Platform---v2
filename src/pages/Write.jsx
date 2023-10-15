@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPost } from "../Slice/postSlice";
 
-function Write() {
+function Write({ handleThemeSwitch, theme }) {
   const username = useSelector((state) => state.user.username);
   const [titlePost, setTitlePost] = useState("");
   const [categories, setCategories] = useState("Man United");
@@ -28,6 +28,7 @@ function Write() {
       comment: [],
       image:
         "https://www.worldcupupdates.org/wp-content/uploads/2023/06/Premier-League-2023-2024-club-1.png",
+      views: 1,
     };
 
     dispatch(addPost(newPost));
@@ -41,8 +42,8 @@ function Write() {
   }
   return (
     <>
-      <TopBar />
-      <div className="h-screen bg-[#3e0044]">
+      <TopBar handleThemeSwitch={handleThemeSwitch} theme={theme} />
+      <div className="bg-bkg-1 h-screen transition-all duration-300">
         <section className="mx-auto flex flex-col gap-5   px-2 py-2 md:w-1/3 md:pt-12">
           <img
             src="https://www.worldcupupdates.org/wp-content/uploads/2023/06/Premier-League-2023-2024-club-1.png"
@@ -55,7 +56,7 @@ function Write() {
             onSubmit={handlePostNews}
           >
             <div className="flex items-center justify-around">
-              <p className="text-white">Author : {username}</p>
+              <p className="text-text-1">Author : {username}</p>
               <select
                 name="categories"
                 id="categories"
@@ -72,7 +73,7 @@ function Write() {
             </div>
             <div className=" flex  items-center gap-3">
               <label htmlFor="fileInput">
-                <i className="fa-solid fa-plus flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-white text-white"></i>
+                <i className="fa-solid fa-plus border-text-1 text-text-1 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border"></i>
               </label>
               <input type="file" id="fileInput" className="hidden" />
               <input

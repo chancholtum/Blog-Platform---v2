@@ -28,7 +28,7 @@ function Comment({ ment, postId }) {
   }
 
   return (
-    <div className="relative flex w-full items-center gap-5 rounded-xl bg-[#37003C] px-2 py-2 md:px-6 md:py-4">
+    <div className="bg-bkg-2 relative flex w-full items-center gap-5 rounded-xl px-2 py-2 transition-all duration-300 md:px-6 md:py-4">
       <img
         src={photo}
         alt={name}

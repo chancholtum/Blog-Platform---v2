@@ -19,7 +19,10 @@ function SinglePost() {
   const [contentPost, setContentPost] = useState("");
 
   const currentPost = posts.find((post) => post.id === postId);
-  const { title, comment, categories, image, textInPost, author } = currentPost;
+  const { title, comment, categories, image, textInPost, author, views } =
+    currentPost;
+
+  console.log(currentPost.categories);
 
   function handleDeletePost() {
     dispatch(deletePost(postId));
@@ -52,7 +55,7 @@ function SinglePost() {
         <img
           src={image}
           alt={title}
-          className="mx-auto w-full rounded-2xl px-1 sm:px-0"
+          className="animate-fade mx-auto w-full rounded-2xl px-1 sm:px-0"
         />
         {isEditPost ? (
           <input
@@ -64,11 +67,13 @@ function SinglePost() {
             onChange={(e) => setTitlePost(e.target.value)}
           />
         ) : (
-          <p className="relative z-0 mt-5 text-center text-3xl">{title}</p>
+          <p className="animate-fadeIn text-text-1 relative z-0 mt-5 text-center text-3xl">
+            {title}
+          </p>
         )}
 
-        <div className="mb-5 flex flex-col items-center  justify-between text-lg text-[#37003C]">
-          <div>
+        <div className="animate-fadeIn text-text-1 mb-5 flex  flex-col items-center justify-between text-lg">
+          <div className="">
             Author: <b>{author}</b>
           </div>
 
@@ -106,7 +111,7 @@ function SinglePost() {
             onChange={(e) => setContentPost(e.target.value)}
           ></textarea>
         ) : (
-          <p className="w-full px-4 text-xl font-light leading-6 text-[#676667] first-letter:ml-5 first-letter:text-4xl first-letter:font-bold sm:px-0">
+          <p className="animate-fadeIn text-text-3 w-full px-4 text-xl font-light leading-6 first-letter:ml-5 first-letter:text-4xl first-letter:font-bold sm:px-0">
             {textInPost}
           </p>
         )}
@@ -114,7 +119,7 @@ function SinglePost() {
           <div className=" flex justify-end gap-3 text-xl text-[#37003C]">
             {isEditPost && (
               <button
-                className="text-basw rounded-md bg-[#37003C] p-1 text-white transition-all duration-300 hover:bg-red-500"
+                className="text-basw bg-bkg-2 rounded-md bg-[#37003C] p-1 text-white transition-all duration-300 hover:bg-red-500"
                 onClick={handleSubmit}
               >
                 Edit Post
@@ -124,20 +129,20 @@ function SinglePost() {
               className="transition-all duration-300 hover:text-red-500"
               onClick={handleEditPost}
             >
-              <i className="fa-solid fa-pen-to-square"></i>
+              <i className="fa-solid fa-pen-to-square text-text-1"></i>
             </button>
             <button
               className="transition-all duration-300 hover:text-red-500"
               onClick={handleDeletePost}
             >
-              <i className="fa-solid fa-trash"></i>
+              <i className="fa-solid fa-trash text-text-1"></i>
             </button>
           </div>
         ) : (
           ""
         )}
         {comment.length > 0 ? null : (
-          <p className="mt-5 sm:-mb-10">
+          <p className="animate-fadeIn text-text-1 mt-5 sm:-mb-10">
             Don't have any comment , You are first 👇
           </p>
         )}

@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { updateName } from "../Slice/userSlice";
+import { getPosts } from "../Slice/postSlice";
+import { useEffect, useState } from "react";
 
-function TopBar() {
+function TopBar({ searchQuery, setSearchQuery, handleThemeSwitch, theme }) {
+  const posts = useSelector(getPosts);
   const username = useSelector((state) => state.user.username);
   const imageProfile = useSelector((state) => state.user.imageProfile);
 
@@ -16,7 +19,7 @@ function TopBar() {
     <nav className="sticky top-0 z-[999] flex  h-12 w-full items-center justify-center bg-[#37003C] px-5 sm:justify-between">
       <div className="hidden items-center justify-center gap-3 text-xl text-white sm:flex">
         <a
-          className="duration-400 transition-all hover:text-red-500"
+          className="duration-400 animate-pulse transition-all hover:text-red-500"
           aria-label="linkedin"
           rel="noreferrer"
           target="_blank"
@@ -42,7 +45,7 @@ function TopBar() {
           </svg>
         </a>
         <a
-          className="duration-400 transition-all hover:text-red-500"
+          className="duration-400 animate-pulse transition-all hover:text-red-500"
           aria-label="github"
           rel="noreferrer"
           target="_blank"
@@ -68,7 +71,7 @@ function TopBar() {
           target="_blank"
           rel="noreferrer"
         >
-          <i className="fa-regular fa-user duration-400 text-xl transition-all hover:text-red-500"></i>
+          <i className="fa-regular fa-user duration-400 animate-pulse text-xl transition-all hover:text-red-500"></i>
         </a>
       </div>
 
@@ -112,12 +115,24 @@ function TopBar() {
         )}
 
         <div className="flex items-center justify-center gap-2 rounded-full border border-white bg-[#6f0079] px-4">
-          <i className="fa-solid fa-magnifying-glass text-lg text-white"></i>
+          <i className="fa-solid fa-magnifying-glass animate-beat text-lg text-white"></i>
           <input
-            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search posts..."
             className="w-24 bg-inherit px-4 py-2 text-center text-sm  text-white outline-none transition-all    duration-300 xl:w-28"
           />
         </div>
+        <button
+          onClick={handleThemeSwitch}
+          className=" text-white transition-all duration-300 hover:text-red-500"
+        >
+          {theme === "dark" ? (
+            <i class="fa-regular fa-sun"></i>
+          ) : (
+            <i class="fa-regular fa-moon text-xl"></i>
+          )}
+        </button>
       </div>
 
       <div className="mx-4 flex flex-col gap-1 sm:hidden">

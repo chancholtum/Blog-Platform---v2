@@ -27,7 +27,7 @@ function Comments({ comment, postId }) {
 
   return (
     <>
-      <section className="flex flex-col items-start justify-start gap-3 sm:mt-5">
+      <section className="animate-fadeIn flex flex-col items-start justify-start gap-3 sm:mt-5">
         {comment.map((ment) => (
           <Comment ment={ment} postId={postId} />
         ))}
@@ -41,7 +41,7 @@ function Comments({ comment, postId }) {
         />
 
         <form
-          className="flex flex-[9] items-center justify-center gap-2 rounded-full border border-white bg-[#6f0079] px-4"
+          className="animate-fadeIn flex flex-[9] items-center justify-center gap-2 rounded-full border border-white bg-[#6f0079] px-4"
           onSubmit={handleSubmit}
         >
           <input

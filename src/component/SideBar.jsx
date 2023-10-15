@@ -1,16 +1,36 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { getPosts } from "../Slice/postSlice";
+import { useState } from "react";
 
-function SideBar() {
+function SideBar({ sortBy, setSortBy }) {
+  const posts = useSelector(getPosts);
   const username = useSelector((state) => state.user.username);
   const imageProfile = useSelector((state) => state.user.imageProfile);
+
+  const totalBlogs = posts.length;
+  const totalViews = posts.reduce((acc, post) => acc + post.views, 0);
+
+  const { postId } = useParams();
+
+  // console.log(posts);
+
+  function viewOfPost() {
+    if (!postId) return;
+
+    return posts.find((post) => post.id === postId).views;
+  }
+
+  function numberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   return (
     <>
       {username && (
         <aside className="mx-auto flex w-full flex-col items-center   sm:h-[50%]  sm:gap-5 md:w-auto ">
-          <div className="flex w-full flex-col items-center bg-[#37003C] shadow-lg sm:px-4 sm:py-4 md:mr-5 md:w-auto md:rounded-xl">
-            <div className=" mb-2 flex flex-col items-center gap-2 text-center text-white sm:mb-5">
+          <div className="bg-bkg-2 flex w-full flex-col items-center gap-3 shadow-lg transition-all duration-300 sm:px-4 sm:py-4 md:mr-5 md:w-auto md:rounded-xl">
+            <div className=" text-text-2 mb-2 flex flex-col items-center gap-2 text-center sm:mb-3">
               <span className=" w-3/4 border-white  p-1 text-lg font-semibold ">
                 About me
               </span>
@@ -22,24 +42,30 @@ function SideBar() {
               <p>Visitor</p>
             </div>
 
-            <div className=" mb-2 w-3/4 text-center text-white sm:mb-5 ">
-              <span className=" border-white text-lg font-semibold">
-                Categories
-              </span>
-              <ul className=" mt-2 grid grid-cols-2 items-center gap-x-1 gap-y-4 sm:mt-5">
-                <li className="cursor-pointer">Man United</li>
-                <li className="cursor-pointer">Arsenal</li>
-                <li className="cursor-pointer">Man City</li>
-                <li className="cursor-pointer">Liverpool</li>
-                <li className="cursor-pointer">Chelsea</li>
-                <li className="cursor-pointer">Spurs</li>
-              </ul>
+            <div className="flex gap-2">
+              <p className="text-text-2">Sort :</p>
+              <select
+                name="categories"
+                id="categories"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+              >
+                <option value="input">Options</option>
+                <option value="Ascending">Ascending</option>
+                <option value="Descending">Descending</option>
+                <option value="Man United">Man United</option>
+                <option value="Arsenal">Arsenal</option>
+                <option value="Man City">Man City</option>
+                <option value="Liverpool">Liverpool</option>
+                <option value="Chelsea">Chelsea</option>
+                <option value="Spurs">Spurs</option>
+              </select>
             </div>
 
             <div className="flex items-center justify-center gap-10  sm:flex-col ">
-              <div className="flex  w-3/4 items-center justify-center gap-4 text-white ">
+              <div className="text-text-2  flex w-3/4 items-center justify-center gap-4 ">
                 <a
-                  className="duration-400 transition-all hover:text-red-500"
+                  className="duration-400 hover:text-text-1 animate-pulse transition-all"
                   aria-label="linkedin"
                   rel="noreferrer"
                   target="_blank"
@@ -65,7 +91,7 @@ function SideBar() {
                   </svg>
                 </a>
                 <a
-                  className="duration-400 transition-all hover:text-red-500"
+                  className="duration-400 hover:text-text-1 animate-pulse transition-all"
                   aria-label="github"
                   rel="noreferrer"
                   target="_blank"
@@ -91,15 +117,25 @@ function SideBar() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <i className="fa-regular fa-user duration-400 text-2xl transition-all hover:text-red-500"></i>
+                  <i className="fa-regular fa-user duration-400 hover:text-text-1 animate-pulse text-2xl transition-all"></i>
                 </a>
               </div>
             </div>
           </div>
 
-          <button className=" w-full bg-[#6F0079] px-4 py-2 text-white transition-all duration-300 hover:bg-red-500 sm:w-auto sm:rounded-lg">
+          <button className=" bg-bkg-2 w-full px-4 py-2 text-white transition-all duration-300 hover:bg-red-500 sm:w-auto sm:rounded-lg ">
             <NavLink to="/write">Post your News</NavLink>
           </button>
+          {!postId ? (
+            <div className="text-text-1 text-center">
+              <p>Total Blogs : {totalBlogs} blogs</p>
+              <p>Total Views : {numberWithCommas(totalViews)} views</p>
+            </div>
+          ) : (
+            <div className="text-text-1 text-center transition-all duration-300">
+              <p>Views : {numberWithCommas(viewOfPost())} views</p>
+            </div>
+          )}
         </aside>
       )}
     </>

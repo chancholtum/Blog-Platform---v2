@@ -4,6 +4,7 @@ const initialState = {
   post: [
     {
       title: "What's wrong with Man Utd and how to fix it",
+      views: 3242,
       categories: ["Man United"],
       author: "Chanchol Mukdatanachot",
       textInPost:
@@ -30,6 +31,7 @@ const initialState = {
     },
     {
       title: "PGMOL release VAR audio",
+      views: 1543,
       categories: ["Liverpool"],
       author: "Chanchol Mukdatanachot",
       textInPost:
@@ -56,6 +58,7 @@ const initialState = {
     },
     {
       title: "Saka injured in Arsenal defeat",
+      views: 6954,
       categories: ["Arsenal", "Man United"],
       author: "Chanchol Mukdatanachot",
       textInPost:
@@ -81,6 +84,7 @@ const initialState = {
     },
     {
       title: "When should managers take armband off Haaland?",
+      views: 1496,
       categories: ["Man City"],
       author: "Chanchol Mukdatanachot",
       textInPost:
@@ -108,6 +112,7 @@ const initialState = {
     },
     {
       title: "Maddison genius helps Spurs unpick Liverpool lock",
+      views: 2045,
       categories: ["Spurs", "Liverpool"],
       author: "Chanchol Mukdatanachot",
       textInPost:
@@ -127,6 +132,7 @@ const initialState = {
     },
     {
       title: "Mudryk's first Chelsea goal helps secure derby win at Fulham",
+      views: 3484,
       categories: ["Chelsea"],
       author: "Chanchol Mukdatanachot",
       textInPost:
@@ -240,3 +246,11 @@ export const {
 } = postSlice.actions;
 export default postSlice.reducer;
 export const getPosts = (state) => state.post.post;
+export const ascendingPosts = (state) =>
+  state.post.post.slice().sort((a, b) => {
+    return b.views - a.views;
+  });
+export const decendingPosts = (state) =>
+  state.post.post.slice().sort((a, b) => {
+    return a.views - b.views;
+  });

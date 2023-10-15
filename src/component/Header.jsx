@@ -4,7 +4,7 @@ function Header() {
       <img
         src="header.jpg"
         alt="manchesterunited1999"
-        className="mx-auto  hidden h-full sm:block"
+        className="animate-fade  mx-auto hidden h-screen sm:block"
       />
     </header>
   );

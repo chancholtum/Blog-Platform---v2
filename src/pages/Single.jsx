@@ -1,17 +1,17 @@
-import SideBar from "../component/SideBar"
-import SinglePost from "../component/SinglePost"
-import TopBar from "../component/TopBar"
+import SideBar from "../component/SideBar";
+import SinglePost from "../component/SinglePost";
+import TopBar from "../component/TopBar";
 
-function Single() {
+function Single({ handleThemeSwitch, theme }) {
   return (
-    <>
-    <TopBar/>
-    <div className="flex mt-4 flex-col md:flex-row gap-5 md:gap-0">
-      <SinglePost/>
-      <SideBar/>
+    <div className="bg-bkg-1 h-screen  transition-all duration-300">
+      <TopBar handleThemeSwitch={handleThemeSwitch} theme={theme} />
+      <div className="bg-bkg-1 mt-4 flex h-auto flex-col gap-5 md:flex-row md:gap-0">
+        <SinglePost />
+        <SideBar />
+      </div>
     </div>
-    </>
-  )
+  );
 }
 
-export default Single
+export default Single;

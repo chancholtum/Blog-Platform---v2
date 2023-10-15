@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 
 // import Home from "./pages/Home";
 // import About from "./pages/About";
@@ -21,24 +21,71 @@ const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 function App() {
   const username = useSelector((state) => state.user.username);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "base");
+    }
+  }, [theme]);
+
+  function handleThemeSwitch() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
 
   return (
     <BrowserRouter>
       <Suspense fallback={<SpinnerPage />}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <Home handleThemeSwitch={handleThemeSwitch} theme={theme} />
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <About handleThemeSwitch={handleThemeSwitch} theme={theme} />
+            }
+          />
           <Route
             path="/post/:postId"
-            element={username ? <Single /> : <Login />}
+            element={
+              username ? (
+                <Single handleThemeSwitch={handleThemeSwitch} theme={theme} />
+              ) : (
+                <Login />
+              )
+            }
           />
           <Route path="/login" element={<Login />} />
           <Route
             path="/register"
-            element={username ? <Home /> : <Register />}
+            element={
+              username ? (
+                <Home handleThemeSwitch={handleThemeSwitch} theme={theme} />
+              ) : (
+                <Register />
+              )
+            }
           />
-          <Route path="/write" element={username ? <Write /> : <Login />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route
+            path="/write"
+            element={
+              username ? (
+                <Write handleThemeSwitch={handleThemeSwitch} theme={theme} />
+              ) : (
+                <Login />
+              )
+            }
+          />
+          <Route
+            path="*"
+            element={<PageNotFound handleThemeSwitch={handleThemeSwitch} />}
+          />
         </Routes>
       </Suspense>
     </BrowserRouter>

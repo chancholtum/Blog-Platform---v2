@@ -13,6 +13,33 @@
   font-family: "Kanit", sans-serif;
 }
 
+@layer base {
+  :root {
+    --color-bkg1: 0deg 0% 93%;
+    --color-bkg2: 295deg 100% 12%;
+    --color-textBlack: 0deg 0% 0%;
+    --color-textWhite: 0deg 0% 100%;
+    --color-textGrey: 33deg 5% 33%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bkg1: 0deg 0% 93%;
+      --color-bkg2: 295deg 100% 12%;
+      --color-textBlack: 0deg 0% 0%;
+      --color-textWhite: 0deg 0% 100%;
+      --color-textGrey: 33deg 5% 33%;
+    }
+  }
+  :root[data-theme="dark"] {
+    --color-bkg1: 295deg 100% 12%;
+    --color-bkg2: 359deg 80% 42%;
+    --color-textBlack: 0deg 0% 100%;
+    --color-textWhite: 0deg 0% 0%;
+    --color-textGrey: 33deg 5% 60%;
+  }
+}
+
 .text-post {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -33,4 +60,9 @@ html::-webkit-scrollbar-thumb {
 
 html::-webkit-scrollbar-track {
   background-color: #37003c;
+}
+
+.posts {
+  animation-timeline: view();
+  animation-range: entry 5% cover 20%;
 }

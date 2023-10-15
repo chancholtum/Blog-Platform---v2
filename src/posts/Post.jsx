@@ -18,12 +18,12 @@ function Post({ post }) {
               <span> {category} </span>
             ))}
           </div>
-          <span className="mt-4 cursor-pointer text-center text-2xl font-semibold transition-all duration-300 hover:underline">
+          <span className="text-text-1 mt-4 cursor-pointer text-center text-2xl font-semibold transition-all duration-300 hover:underline">
             {title}
           </span>
           <hr />
         </div>
-        <p className="text-post postdes mt-4 overflow-hidden text-ellipsis   text-base text-stone-600">
+        <p className="text-post postdes text-text-3 mt-4 overflow-hidden text-ellipsis text-base">
           {textInPost}
         </p>
       </Link>
