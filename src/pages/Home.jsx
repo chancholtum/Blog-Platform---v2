@@ -54,7 +54,7 @@ function Home({ handleThemeSwitch, theme }) {
         theme={theme}
       />
       <Header />
-      <div className="animate-fadeInScroll posts mt-4 flex flex-wrap justify-center gap-4">
+      <div className="posts mt-4 flex animate-fadeInScroll flex-wrap justify-center gap-4">
         <Posts search={search} searchQuery={search} sortedPosts={sortedPosts} />
         <SideBar sortBy={sortBy} setSortBy={setSortBy} />
       </div>
